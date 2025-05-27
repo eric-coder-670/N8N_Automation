@@ -1,0 +1,915 @@
+{
+  "name": "Linkedin Automated System",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appJmlUTyvryEMLhk",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://airtable.com/appJmlUTyvryEMLhk"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl4mBi7Hmg0lCGZf",
+          "mode": "list",
+          "cachedResultName": "Manage Leads",
+          "cachedResultUrl": "https://airtable.com/appJmlUTyvryEMLhk/tbl4mBi7Hmg0lCGZf"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.id.split() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status (from Status)",
+              "displayName": "Status (from Status)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Next Call / Follow-up",
+              "displayName": "Next Call / Follow-up",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Notes R1",
+              "displayName": "Notes R1",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcript R1",
+              "displayName": "Transcript R1",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Last Modified",
+              "displayName": "Last Modified",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Ice Breaker",
+              "displayName": "Ice Breaker",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1080,
+        100
+      ],
+      "id": "26c6a123-06b3-4e1e-89f1-425c67d2b211",
+      "name": "Airtable2",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "OFlTThrPCHJMhGwG",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Génération d'un Ice Breaker (1st message de prospection)",
+        "height": 440,
+        "width": 1340
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        40,
+        300
+      ],
+      "id": "6a0d972b-d246-4c0d-8eef-e6ec1a820b57",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Recherche de profils Linkedin",
+        "height": 500,
+        "width": 1340,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -220
+      ],
+      "id": "fa2465e7-ef6f-472e-aa4c-03fff0705d0c",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appJmlUTyvryEMLhk",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://airtable.com/appJmlUTyvryEMLhk"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblr0Ss6Xl7WbBm8n",
+          "mode": "list",
+          "cachedResultName": "Contacts",
+          "cachedResultUrl": "https://airtable.com/appJmlUTyvryEMLhk/tblr0Ss6Xl7WbBm8n"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.title }}",
+            "Social Media": "={{ $json.link }}",
+            "Origin": "Linkedin",
+            "Status": "Lead Linkedin | to contact"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Call 1 scheduled",
+                  "value": "Call 1 scheduled"
+                },
+                {
+                  "name": "Call 2 scheduled",
+                  "value": "Call 2 scheduled"
+                },
+                {
+                  "name": "Proposal sent",
+                  "value": "Proposal sent"
+                },
+                {
+                  "name": "Contract signed",
+                  "value": "Contract signed"
+                },
+                {
+                  "name": "Follow-Up",
+                  "value": "Follow-Up"
+                },
+                {
+                  "name": "Lead Linkedin | to contact",
+                  "value": "Lead Linkedin | to contact"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Social Media",
+              "displayName": "Social Media",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Origin",
+              "displayName": "Origin",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Youtube",
+                  "value": "Youtube"
+                },
+                {
+                  "name": "Linkedin",
+                  "value": "Linkedin"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Manage Leads",
+              "displayName": "Manage Leads",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Agreement",
+              "displayName": "Agreement",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        820,
+        100
+      ],
+      "id": "e300f730-b3b0-4d2a-b3c8-9ae670dbcf35",
+      "name": "Airtable1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "OFlTThrPCHJMhGwG",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        -160
+      ],
+      "id": "01fb360d-0bed-4114-9eeb-33fab616744a",
+      "name": "When chat message received",
+      "webhookId": "ba8ace83-a04d-4375-ad69-b8c3b494a67e"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "={{ $json.chatInput }}"
+            },
+            {
+              "content": "=# Role  \nYour role is to format the user's request in order to pass it to the \"Scrape Linkedin Tool\".\n\n# Instructions  \nYou will receive a request from the user who wants to find LinkedIn profiles.\n\nYou will receive:\n- The job title to search for, which we’ll call \"jobTitle\".  \n- The industry to search in, which we’ll call \"companyIndustry\".  \n- The location to search in, which we’ll call \"location\".\n\nYou must analyze the request and output these fields in the following format:  \n[\njobTitle : +...\ncompanyIndustry : +...\nlocation : +...\n]\n\n**Execute the \"tool\" to find the LinkedIn profiles.**\n\n# Example  \n## Example 1  \nRequest: I'm looking for CEOs in the real estate industry in Paris  \nOutput: \n[\njobTitle : +CEO\ncompanyIndustry : +RealEstate\nlocation : +Paris\n]\n\n## Example 2  \nRequest: Find me the LinkedIn profiles of fitness coaches in Lyon.  \nOutput:\n[\njobTitle : +FitnessCoach\ncompanyIndustry : \nlocation : +Lyon\n]",
+              "role": "system"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        380,
+        -160
+      ],
+      "id": "38925cf6-8621-43ba-8530-16cf137ad251",
+      "name": "OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "aCdJu8MuVVKuLDPa",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "start",
+        "options": {
+          "destinationFieldName": "start"
+        }
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        -160
+      ],
+      "id": "eb5e9b4b-5fb6-4d3b-9530-4a4d941e8e8a",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0a50dd06-dbe3-482b-bbff-fa90c7106661",
+              "name": "=start",
+              "value": "={{ [1, 11, 21, 31, 41, 51, 61, 71, 81, 91] }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        -160
+      ],
+      "id": "e8e15e7a-98b4-4a99-8885-8ab1aea23300",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().flatMap(item => {\n  if (!item.json.items || !Array.isArray(item.json.items)) {\n    return []; // Si 'items' est absent ou n'est pas un tableau, on ignore cet item\n  }\n\n  return item.json.items\n    .map(result => ({\n      title: result.title,\n      link: result.link\n    }))\n    .filter(result => result.link && result.link.includes(\"linkedin.com/in/\"));\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        380,
+        100
+      ],
+      "id": "9387a39f-443e-4b83-bd05-09eff48a59ce",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/customsearch/v1?q=site:linkedin.com{{ $('OpenAI1').item.json.message.content.jobTitle }}{{ $('OpenAI1').item.json.message.content.companyIndustry }}{{ $('OpenAI1').item.json.message.content.location }}&key=YOUR_KEY&cx=YOUR_CX&start={{ $json.start }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        160,
+        100
+      ],
+      "id": "f5a0af63-f1e7-4afc-9a5f-70cb95867362",
+      "name": "HTTP Request",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.0-flash-001",
+        "options": {
+          "frequencyPenalty": 0,
+          "presencePenalty": 0,
+          "temperature": 0.7,
+          "topP": 0.9
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        780,
+        580
+      ],
+      "id": "b3b44ab4-7914-4261-a7de-edf67d64bb0b",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "IrNUyR9krLyMZgpU",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=informations : {{ $json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Rôle\nYou are SettingGPT, a world-class Sales Development Representative with over 10000000000 B2B leads under your belt. Getting replies from leads is what gives you the most happiness.\n\n# Objectif\nYour job is to generate questions to understand the services offered by businesses based on their website information.\n\nYour message must be ambiguous as to you being a potential customer.\n\nGoal is to have the lead reply to your message.\n\nLead is the founder or CEO of the targeted company.\n\n# Message Template\n\n“Hello [name], J’ai été faire un tour sur [source], donc en gros, [preliminary understanding of the service in a summarized sentence] ? [question that seek a deeper understanding of the website’s content like a prospect would] ?? [Juste pour bien comprendre OR Simplement pour bien comprendre]”\n\n# Instructions\n\n- Start with: Hello [name], “j’ai été faire un tour sur votre site” or “je viens de checker votre site” or \"j'ai été faire un tour sur ton youtube\" or others plateforms.\nIf the person has a YouTube channel, then tell them that you saw their YouTube.\n- Express a preliminary understanding of the service in a summarized sentence. Introduce with: “donc en gros”.\n- Make your message feel human and spontaneous.\n- Be approximative about the website’s data or insights you refer to.\n- Never copy-paste website’s content.\n- Never mention figures or numbers within the website.\n- Never write sentences longer than 14 words.\n- Always write in the form of questions.\n- Always ask 2 questions MAXIMUM.\n- Question 1 must seek a surface-level understanding of the website’s content.\n- End Question 1 with only 1 interrogation mark. (Example: “?”)\n- Question 2 must seek a deeper understanding of the website’s content like a prospect would.\n- End Question 2 with 2 interrogation marks. (Example: “??”)\n- End with “Juste pour comprendre” or “Simplement pour bien comprendre”.\n- Do not punctuate your last sentence.\n- Delete space between all interrogation marks and the previous word.\n\n# Exemples\n“Hello Fabien, j’ai été faire un tour sur ton site, donc en gros si j'ai bien compris tu as créés un outil pour enregistrer ses appels de ventes c'est ça ?? Juste pour bien comprendre”\n\n“Hello Ludovic, j’ai été faire un tour sur ta chaîne youtube, donc en gros si j'ai bien compris tu aides les coachs et consultants à acquérir plus de clients ? tu interviens également sur ka partie conversion ou pas du tout ? juste pour bien comprendre”\n\n“Hello Martin , j’ai été faire un tour sur ton site, donc en gros ton produit c’est une IA qui permet de faire de la gestion de projet ? Pour derrière faciliter la création d’un produit ?? Juste pour bien comprendre”\n\n“Hello Virginie, j’ai été faire un tour sur ton profil, donc en gros si j'ai bin compris, tu proposes aux entreprises des listes de leads qualifiés ? tu cibles un secteur précis ou pas forcément ?”\n\n# Notes\n- Make your message feel human and spontaneous.\n- The question must make sense"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        660,
+        400
+      ],
+      "id": "980590f7-6b11-486c-96f8-1dd8e8e3585b",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appJmlUTyvryEMLhk",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://airtable.com/appJmlUTyvryEMLhk"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl4mBi7Hmg0lCGZf",
+          "mode": "list",
+          "cachedResultName": "Manage Leads",
+          "cachedResultUrl": "https://airtable.com/appJmlUTyvryEMLhk/tbl4mBi7Hmg0lCGZf"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Airtable2').item.json.id }}",
+            "Ice Breaker": "={{ $json.text }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Status (from Status)",
+              "displayName": "Status (from Status)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Next Call / Follow-up",
+              "displayName": "Next Call / Follow-up",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Notes R1",
+              "displayName": "Notes R1",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcript R1",
+              "displayName": "Transcript R1",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Last Modified",
+              "displayName": "Last Modified",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Website",
+              "displayName": "Website",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Ice Breaker",
+              "displayName": "Ice Breaker",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1040,
+        400
+      ],
+      "id": "8affcbb9-9d75-4df0-97ab-a419d4754f62",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "OFlTThrPCHJMhGwG",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "perplexity/sonar-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        400,
+        580
+      ],
+      "id": "93275237-03c4-4812-ae1e-962a90bddd62",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "IrNUyR9krLyMZgpU",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=linkedin url : {{ $('Airtable1').item.json.fields['Social Media'] }}\nfull name : {{ $('Airtable1').item.json.fields.Name }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Your job is to conduct in-depth research on this person to understand exactly what they're offering.\n\nYou must provide me with the exact source of the information you're quoting.\n\nYou receive a LinkedIn URL but you have to look to see if the person shares content on YouTube.\n\nYou must give me all the information about the business."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        300,
+        400
+      ],
+      "id": "ab8fc405-a4cc-41a4-9d86-a1d495bbccf1",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "maxItems": 3
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        580,
+        100
+      ],
+      "id": "6d2d27d7-a14f-411d-9330-0886c40f1dc3",
+      "name": "Limit"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Airtable1": {
+      "main": [
+        [
+          {
+            "node": "Airtable2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "OpenAI1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable2": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Airtable1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "330fc646-78df-4866-b133-d71623d2460c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f6e8ca9c63f5cd96c90967e4413ac46d1e7e5efae59688e4dcd7109ecb5d2bd4"
+  },
+  "id": "w99HPEgnzyjKRVGI",
+  "tags": [
+    {
+      "createdAt": "2025-04-09T13:02:16.651Z",
+      "updatedAt": "2025-04-09T13:02:16.651Z",
+      "id": "t3RaOBVyIb1WX8Wf",
+      "name": "N8N Course"
+    }
+  ]
+}

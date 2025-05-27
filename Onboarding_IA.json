@@ -1,0 +1,1356 @@
+{
+    "name": "Onboarding IA - Les Nexts Steps",
+    "flow": [
+        {
+            "id": 1,
+            "module": "tally:watchNewResponse",
+            "version": 1,
+            "parameters": {
+                "__IMTHOOK__": 1187770
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTHOOK__": {
+                            "data": {
+                                "editable": "false"
+                            },
+                            "label": "My New Response webhook"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTHOOK__",
+                        "type": "hook:tally",
+                        "label": "Webhook",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "eventId",
+                        "type": "text",
+                        "label": "Event ID"
+                    },
+                    {
+                        "name": "responseId",
+                        "type": "text",
+                        "label": "Response ID"
+                    },
+                    {
+                        "name": "submissionId",
+                        "type": "text",
+                        "label": "Submission ID"
+                    },
+                    {
+                        "name": "respondentId",
+                        "type": "text",
+                        "label": "Respondent ID"
+                    },
+                    {
+                        "name": "formId",
+                        "type": "text",
+                        "label": "Form ID"
+                    },
+                    {
+                        "name": "formName",
+                        "type": "text",
+                        "label": "Form Name"
+                    },
+                    {
+                        "name": "createdAt",
+                        "type": "date",
+                        "label": "Created at"
+                    },
+                    {
+                        "name": "fields",
+                        "spec": [
+                            {
+                                "name": "question_PRzrvP (CHECKBOXES)",
+                                "spec": {
+                                    "type": "text"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "name": "Checkbox (Par téléphone)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (Par SMS)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (Sur Instagram)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (Sur LinkedIn)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (Sur WhatsApp)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (Autres)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Préciser...",
+                                "type": "text"
+                            },
+                            {
+                                "name": "Plutôt le matin entre 9h et 11h...",
+                                "type": "text"
+                            },
+                            {
+                                "name": "Prénom de la personne",
+                                "type": "text"
+                            },
+                            {
+                                "name": "Nom de la personne",
+                                "type": "text"
+                            },
+                            {
+                                "name": "Numéro de téléphone",
+                                "type": "text"
+                            },
+                            {
+                                "name": "Pour plus de précision si nécessaire.",
+                                "type": "text"
+                            },
+                            {
+                                "name": "Lien URL pour se connecter + Identifiant + Mot de passe",
+                                "type": "text"
+                            },
+                            {
+                                "name": "Lien URL pour se connecter + Identifiant + Mot de passe",
+                                "type": "text"
+                            },
+                            {
+                                "name": "Lien URL pour se connecter + Identifiant + Mot de passe",
+                                "type": "text"
+                            },
+                            {
+                                "name": "Lien URL pour se connecter + Identifiant + Mot de passe",
+                                "type": "text"
+                            },
+                            {
+                                "name": "question_q5Rzo8 (FILE_UPLOAD)",
+                                "spec": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "File ID"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "File Name"
+                                    },
+                                    {
+                                        "name": "url",
+                                        "type": "url",
+                                        "label": "File URL"
+                                    },
+                                    {
+                                        "name": "mimeType",
+                                        "type": "text",
+                                        "label": "File Mime Type"
+                                    },
+                                    {
+                                        "name": "size",
+                                        "type": "uinteger",
+                                        "label": "File Size"
+                                    }
+                                ],
+                                "type": "array"
+                            },
+                            {
+                                "name": "question_ArLGgz (CHECKBOXES)",
+                                "spec": {
+                                    "type": "text"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "name": "Checkbox (Tous les jours)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (Tous les 2 jours)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (Tous les 3 jours)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "question_BEklyK (CHECKBOXES)",
+                                "spec": {
+                                    "type": "text"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "name": "Checkbox (9h)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (12h)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (13h)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (18h)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "Checkbox (20h)",
+                                "type": "boolean"
+                            },
+                            {
+                                "name": "J'ai une heure précise...",
+                                "type": "text"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Fields"
+                    },
+                    {
+                        "name": "fieldsById",
+                        "spec": [
+                            {
+                                "name": "question_PRzrvP",
+                                "spec": {
+                                    "type": "text"
+                                },
+                                "type": "array",
+                                "label": "question_PRzrvP (CHECKBOXES)"
+                            },
+                            {
+                                "name": "question_PRzrvP_e779a7e1-b8b7-43fa-a128-4813d0c9a465",
+                                "type": "boolean",
+                                "label": "Checkbox (Par téléphone)"
+                            },
+                            {
+                                "name": "question_PRzrvP_164a8d8e-3929-418a-8f6f-30844a0e118d",
+                                "type": "boolean",
+                                "label": "Checkbox (Par SMS)"
+                            },
+                            {
+                                "name": "question_PRzrvP_826eb1bb-d3f9-4844-ab1a-06889133c1e2",
+                                "type": "boolean",
+                                "label": "Checkbox (Sur Instagram)"
+                            },
+                            {
+                                "name": "question_PRzrvP_7dc6f009-3ce7-4ae5-a928-d4f40182cea1",
+                                "type": "boolean",
+                                "label": "Checkbox (Sur LinkedIn)"
+                            },
+                            {
+                                "name": "question_PRzrvP_48ce2eea-f99f-4bfc-9452-466f414a4d93",
+                                "type": "boolean",
+                                "label": "Checkbox (Sur WhatsApp)"
+                            },
+                            {
+                                "name": "question_PRzrvP_87b4a7a9-3da3-4b05-86d6-929fbe4e7374",
+                                "type": "boolean",
+                                "label": "Checkbox (Autres)"
+                            },
+                            {
+                                "name": "question_Eqx6vA",
+                                "type": "text",
+                                "label": "Préciser..."
+                            },
+                            {
+                                "name": "question_7X2zAR",
+                                "type": "text",
+                                "label": "Plutôt le matin entre 9h et 11h..."
+                            },
+                            {
+                                "name": "question_rDoYGp",
+                                "type": "text",
+                                "label": "Prénom de la personne"
+                            },
+                            {
+                                "name": "question_4aKOAd",
+                                "type": "text",
+                                "label": "Nom de la personne"
+                            },
+                            {
+                                "name": "question_jelz5Y",
+                                "type": "text",
+                                "label": "Numéro de téléphone"
+                            },
+                            {
+                                "name": "question_2jKo1g",
+                                "type": "text",
+                                "label": "Pour plus de précision si nécessaire."
+                            },
+                            {
+                                "name": "question_xVJz4E",
+                                "type": "text",
+                                "label": "Lien URL pour se connecter + Identifiant + Mot de passe"
+                            },
+                            {
+                                "name": "question_bZxypZ",
+                                "type": "text",
+                                "label": "Lien URL pour se connecter + Identifiant + Mot de passe"
+                            },
+                            {
+                                "name": "question_Z92evA",
+                                "type": "text",
+                                "label": "Lien URL pour se connecter + Identifiant + Mot de passe"
+                            },
+                            {
+                                "name": "question_Nq7PMN",
+                                "type": "text",
+                                "label": "Lien URL pour se connecter + Identifiant + Mot de passe"
+                            },
+                            {
+                                "name": "question_q5Rzo8",
+                                "spec": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "File ID"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "File Name"
+                                    },
+                                    {
+                                        "name": "url",
+                                        "type": "url",
+                                        "label": "File URL"
+                                    },
+                                    {
+                                        "name": "mimeType",
+                                        "type": "text",
+                                        "label": "File Mime Type"
+                                    },
+                                    {
+                                        "name": "size",
+                                        "type": "uinteger",
+                                        "label": "File Size"
+                                    }
+                                ],
+                                "type": "array",
+                                "label": "question_q5Rzo8 (FILE_UPLOAD)"
+                            },
+                            {
+                                "name": "question_ArLGgz",
+                                "spec": {
+                                    "type": "text"
+                                },
+                                "type": "array",
+                                "label": "question_ArLGgz (CHECKBOXES)"
+                            },
+                            {
+                                "name": "question_ArLGgz_55e4faaf-ed11-4675-a15d-ed4d3883e35f",
+                                "type": "boolean",
+                                "label": "Checkbox (Tous les jours)"
+                            },
+                            {
+                                "name": "question_ArLGgz_ebf01b7c-d95f-4e42-ae5b-fe2429a8a06f",
+                                "type": "boolean",
+                                "label": "Checkbox (Tous les 2 jours)"
+                            },
+                            {
+                                "name": "question_ArLGgz_e0c993e9-31a5-4283-ade1-9d666822256f",
+                                "type": "boolean",
+                                "label": "Checkbox (Tous les 3 jours)"
+                            },
+                            {
+                                "name": "question_BEklyK",
+                                "spec": {
+                                    "type": "text"
+                                },
+                                "type": "array",
+                                "label": "question_BEklyK (CHECKBOXES)"
+                            },
+                            {
+                                "name": "question_BEklyK_c7c2b754-53ea-40c6-80da-274d446c8d06",
+                                "type": "boolean",
+                                "label": "Checkbox (9h)"
+                            },
+                            {
+                                "name": "question_BEklyK_7d14b83b-6f13-44d1-bae9-35c4b21d10c8",
+                                "type": "boolean",
+                                "label": "Checkbox (12h)"
+                            },
+                            {
+                                "name": "question_BEklyK_3743d8ac-bacd-4422-b2b4-e4e3c7648085",
+                                "type": "boolean",
+                                "label": "Checkbox (13h)"
+                            },
+                            {
+                                "name": "question_BEklyK_7a671bf3-bed4-49fe-8c73-f4e9c3b796af",
+                                "type": "boolean",
+                                "label": "Checkbox (18h)"
+                            },
+                            {
+                                "name": "question_BEklyK_d61b73e6-cf1d-4ead-8536-977794974d8e",
+                                "type": "boolean",
+                                "label": "Checkbox (20h)"
+                            },
+                            {
+                                "name": "question_kb61oe",
+                                "type": "text",
+                                "label": "J'ai une heure précise..."
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Fields by ID"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 13,
+            "module": "util:FunctionSleep",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "duration": "60"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "duration",
+                        "type": "uinteger",
+                        "label": "Delay",
+                        "required": true,
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": 4,
+            "module": "openai-gpt-3:messageAssistantAdvanced",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 2727973
+            },
+            "mapper": {
+                "role": "user",
+                "message": "Utilisez ces informations pour élaborer un plan d'action personnalisé sur 120 jours en utilisant le prompt donnée à l'assistant GPT :\n{{1.fields.`What's Your First Name?`}}{{1.fields.`Who are you looking to help?`}}\n{{1.fields.`Are you introverted or extroverted?`}}{{1.fields.`Do you have any clients yet?`}}{{1.fields.`How many &amp; what hours can you work per day? `}}{{1.fields.`What is your biggest constraint holding you back from scaling?`}}{{1.fields.`Finally, what is your goal in the next 90 days?`}}\n\nIncluez uniquement ce qu'il y dans le plan globale \"Blueprint AI\" !\n\nPAS DE # OU DE * DANS LE RESULTAT.\n\nLe plan doit rester très similaire à celui fournit et être modifié en seulement fonction des réponses des participants, de sorte à ce que vous n'avez pas besoin de dire tout ce que j'ai mis ci-dessous entre guillemets :\n\nNE LEUR DONNEZ QUE 3 TÂCHES QUOTIDIENNES.\n\n\"Salut {{1.fields.`What's Your First Name?`}},je suis l'assistant de Charlie et il m'a informé que vous aviez besoin d'un plan de 120 jours basé sur les réponses que vous m'avez données. Cela vous aidera beaucoup et vous donnera de la clarté dans vos actions quotidiennes. Prenez des notes, c'est important.\n\nVoici vos actions quotidiennes non néogables :\n- Tâche 1\n- Tâche 2\n- Tâche 3\n\nIl ne s'agit pas de travailler toute la journée, mais d'effectuer de courtes périodes de 90 minutes de travail approfondi sur la tâche quotidienne à accomplir. Il n'est pas nécessaire de voir l'ensemble de l'escalier, mais seulement chaque marche.\n\nConfiez-leur UNIQUEMENT trois tâches quotidiennes en fonction de leurs réponses.\n\nPar exemple,\n\n- 50 appels à froid par jour (15 suivis)\n- 50 messages directs de groupes FB dans leur niche (20 suivis de qualité pour les messages directs)\n- Documentez quotidiennement votre parcours sur YouTube (créez une série comme « build in public »).\n\nEnsuite, donnez-leur une valeur ajoutée en leur disant comment trouver des rendez-vous et obtenir des prospects en fonction de LEUR NIVEAU ET DE LA PERSONNE QU'ILS AIDENT.\n\nN'INCLUEZ PAS LES DEUX.\n\nPar exemple, s'ils veulent des numéros de téléphone, ils iront dans les annuaires professionnels comme les pages jaunes ou s'ils travaillent dans l'immobilier, ils iront sur seloger, leboincoin et d'autres sites web.\n\nPour les DM à froids, dites-leur de s'appuyer sur les meilleurs gourous de leurs niches, par exemple, allez sur Instagram et cherchez coach immobilier et vous trouverez vos concurrents qui ont construit une audience d'exactement ceux que vous voulez aider.\n\nPassez par leur suivi avec un outil appelé instantdatascraper et extraire dans un CSV.\n\nMaintenant, s'ils travaillent avec des propriétaires d'entreprises en ligne comme des formateurs, des coachs fitness, et ainsi de suite.\n\n- Contenu long sur YouTube tous les deux jours (trouver 5 concurrents dans le même créneau pour trouver leurs vidéos les plus populaires).\n- Reels Instagram (la page d'exploration est essentielle pour trouver des idées)\n- 50 DM sur IG (le plus important est de trouver des prospects sous-exposés et d'optimiser votre profil, croyez-moi j'ai vu des centaines de milliers de DM et ce sont eux qui améliorent le plus les taux de réservation).\n\nEn fonction de leurs réponses, vous leur donnerez des éléments quotidiens non négociables et vous devrez donc leur donner les KPI idéaux pour chaque tâche.\n\nPar exemple :\n\n- Le démarchage téléphonique serait un taux de décrochage de 30 %, un taux de présentation d'une offre de 15 % et un taux de prise de rendez-vous de 5 %.\n- YouTube serait un taux de clics de 5%, une durée de visionnage de 3 minutes et 10000 vues mensuelles dans le studio YouTube.\n- Les DM froids représentent un taux de première réponse de 15 %, un taux de réponse à l'offre de 5 % et un taux de prise de rendez-vous de 1 %.\n\nDites-leur qu'il est absolument crucial de suivre les métriques chaque jour car cela leur permet de résoudre n'importe quelle contrainte spécifique dans leur entreprise et qu'ils peuvent trouver toutes les feuilles de suivi dans le module sur la plateforme e-learning.\n\nMaintenant, une fois qu'ils ont passé le cap le plus difficile, celui de l'élan initial et de la signature de leur premier client, dites-leur de réinvestir dans le canal d'acquisition qui a le mieux fonctionné.\n\nDites-leur de réinvestir dans le canal d'acquisition qui a le mieux fonctionné pour eux. \n\nFaites-leur connaître le principe de pareto, qui veut que 20 % des efforts produisent 80 % des résultats. A partir des tâches quotidiennes qui vous ont été confiées. Ce ne sera pas une combinaison de tâches qui fonctionnera, mais plutôt l'une d'entre elles qui fonctionnera soudainement et, une fois que vous aurez obtenu une preuve de concept, vous pourrez l'étendre jusqu'à la lune.\n\nPasser de 0 à 10 000 euros par mois est de loin le plus difficile. La raison pour laquelle c'est difficile est que vous devez devenir une personne différente, ceci est dû au fait que vous ferez des actions que vous n'avez jamais faites auparavant. C'est tout.\n\nVous remarquerez à quel point c'est simple, les 3 tâches quotidiennes ne sont pas complexes mais vous rencontrerez des doutes. Vous pouvez surmonter ces doutes en les connaissant et en les reconnaissant, ce qui vous rapprochera de la réussite et vous fera entrer dans une nouvelle réalité.\n\nPour atteindre 10 000 euros par mois, il suffit d'agir et de ne penser à rien, de devenir persuasif, de vendre et de prendre des rendez-vous.\n\nNE PAS PENSER AU PRODUIT, cela ne peut être amélioré qu'en signant des clients. Vous n'avez pas besoin de voir tout l'escalier, seulement la première marche.\n\n10k - 50k/mois, c'est réinvestir dans la compétence et dans le canal qui fonctionne le mieux. Concentrez-vous sur la déléguation d'un bout à l'autre de la chaîne. Par exemple, la génération de leads, la prise de rendez-vous sont plus importantes que les opérations, mais les ventes et l'exécution sont les plus importantes. Finalement, déléguez dans le domaine qui vous plaît le moins.\n\nVous êtes plus près du but que vous ne le pensez.\n\nContinuez à pousser et essayez d'être actif sur la communauté, nous avons constaté que les membres qui se connectent les uns aux autres, qui publient ce qu'ils ont appris et qui donnent reçoivent plus de réciprocité. Il y a une tonne de membres qui sont dans votre niche, alors je vous suggère de les trouver et de créer un groupe WhatsApp pour vous aider mutuellement.\n\nJ'ai hâte de voir vos progrès.\n\nJe suis impatient de voir vos progrès et je vous en remercie,\n\nSimon»\n\n\nN'OUBLIEZ PAS D'ADAPTER CERTAINES PARTIES POUR QU'ELLES SOIENT PERSONNALISÉES !",
+                "assistantId": "asst_XaWCuZgMWPU4N3DqBDWCHltn"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "role": {
+                            "label": "User"
+                        },
+                        "model": {
+                            "mode": "chose"
+                        },
+                        "tools": {
+                            "mode": "chose"
+                        },
+                        "image_urls": {
+                            "mode": "chose"
+                        },
+                        "assistantId": {
+                            "mode": "chose",
+                            "label": "créateur de contenu mail  (gpt-4-turbo-preview)",
+                            "nested": []
+                        },
+                        "image_files": {
+                            "mode": "chose"
+                        },
+                        "tool_choice": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "truncation_strategy": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "file_search_resources": {
+                            "mode": "chose"
+                        },
+                        "code_interpreter_resources": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            },
+                            "label": "My OpenAI connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "assistantId",
+                        "type": "select",
+                        "label": "Assistant",
+                        "required": true
+                    },
+                    {
+                        "name": "role",
+                        "type": "select",
+                        "label": "Role",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "user",
+                                "assistant"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "threadId",
+                        "type": "text",
+                        "label": "Thread ID"
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model"
+                    },
+                    {
+                        "name": "tools",
+                        "type": "select",
+                        "label": "Tools",
+                        "multiple": true,
+                        "validate": {
+                            "enum": [
+                                "file_search",
+                                "code_interpreter"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "file_search_resources",
+                        "type": "select",
+                        "label": "File Search Resources"
+                    },
+                    {
+                        "name": "code_interpreter_resources",
+                        "type": "select",
+                        "label": "Code Interpreter Resources",
+                        "multiple": true,
+                        "validate": {
+                            "maxItems": 20
+                        }
+                    },
+                    {
+                        "name": "tool_choice",
+                        "type": "select",
+                        "label": "Tool Choice",
+                        "validate": {
+                            "enum": [
+                                "none",
+                                "auto",
+                                "required",
+                                "file_search",
+                                "code_interpreter",
+                                "function"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "instructions",
+                        "type": "text",
+                        "label": "Instructions"
+                    },
+                    {
+                        "name": "max_prompt_tokens",
+                        "type": "uinteger",
+                        "label": "Max Prompt Tokens"
+                    },
+                    {
+                        "name": "max_completion_tokens",
+                        "type": "uinteger",
+                        "label": "Max Completion Tokens"
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "auto",
+                                "json_object",
+                                "text"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "truncation_strategy",
+                        "type": "select",
+                        "label": "Truncation Strategy",
+                        "validate": {
+                            "enum": [
+                                "auto",
+                                "last_messages"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "message",
+                        "type": "text",
+                        "label": "Message",
+                        "required": true
+                    },
+                    {
+                        "name": "image_files",
+                        "type": "select",
+                        "label": "Image Files",
+                        "multiple": true
+                    },
+                    {
+                        "name": "image_urls",
+                        "spec": {
+                            "name": "value",
+                            "type": "url",
+                            "label": "Image URL",
+                            "required": true
+                        },
+                        "type": "array",
+                        "label": "Image URLs"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 7,
+            "module": "elevenlabs:createTextToSpeech",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3723821
+            },
+            "mapper": {
+                "text": "{{4.result}}",
+                "model_id": "eleven_multilingual_sts_v2",
+                "voice_id": "Vytar3ZagBeE71W1Td4E",
+                "voice_settings": {}
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "model_id": {
+                            "mode": "chose",
+                            "label": "Eleven Multilingual v2 (eleven_multilingual_sts_v2)"
+                        },
+                        "voice_id": {
+                            "mode": "chose",
+                            "label": "generated/Homme UGC 25 ans"
+                        },
+                        "optimize_streaming_latency": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "elevenlabs"
+                            },
+                            "label": "My ElevenLabs connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:elevenlabs",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "voice_id",
+                        "type": "select",
+                        "label": "Voice",
+                        "required": true
+                    },
+                    {
+                        "name": "model_id",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "text",
+                        "type": "text",
+                        "label": "Text",
+                        "required": true
+                    },
+                    {
+                        "name": "voice_settings",
+                        "spec": [
+                            {
+                                "name": "stability",
+                                "type": "number",
+                                "label": "Stability",
+                                "validate": {
+                                    "max": 1,
+                                    "min": 0
+                                }
+                            },
+                            {
+                                "name": "similarity_boost",
+                                "type": "number",
+                                "label": "Similarity Boost",
+                                "validate": {
+                                    "max": 1,
+                                    "min": 0
+                                }
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Voice Settings"
+                    },
+                    {
+                        "name": "optimize_streaming_latency",
+                        "type": "select",
+                        "label": "Optimize Streaming Latency",
+                        "validate": {
+                            "enum": [
+                                "0",
+                                "1",
+                                "2",
+                                "3",
+                                "4"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": 8,
+            "module": "google-drive:createAFolder",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 727323
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "false",
+                                "connection": "google-restricted"
+                            },
+                            "label": "My Google Restricted connection (agency.aiaa@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-restricted",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 9,
+            "module": "google-drive:uploadAFile",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 727323
+            },
+            "mapper": {
+                "data": "{{7.data}}",
+                "select": "map",
+                "convert": false,
+                "filename": "{{7.fileName}}",
+                "folderId": "{{8.id}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1500,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "select": {
+                            "label": "Enter manually"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-restricted"
+                            },
+                            "label": "My Google Restricted connection (agency.aiaa@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-restricted",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "type": "hidden"
+                    },
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Enter a Folder ID",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "map",
+                                "value"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "New File Name"
+                    },
+                    {
+                        "name": "filename",
+                        "type": "text",
+                        "label": "File Name",
+                        "required": true
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Data",
+                        "required": true
+                    },
+                    {
+                        "name": "convert",
+                        "type": "boolean",
+                        "label": "Convert a File",
+                        "required": true
+                    },
+                    {
+                        "name": "folderId",
+                        "type": "text",
+                        "label": "Folder ID",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 10,
+            "module": "google-drive:shareAFileFolder",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 727323
+            },
+            "mapper": {
+                "file": "{{9.id}}",
+                "role": "reader",
+                "type": "anyone",
+                "select": "file",
+                "destination": "drive",
+                "allowFileDiscovery": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1800,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "file": {
+                            "mode": "edit",
+                            "path": []
+                        },
+                        "role": {
+                            "mode": "chose",
+                            "label": "Reader"
+                        },
+                        "type": {
+                            "mode": "chose",
+                            "label": "Anyone"
+                        },
+                        "select": {
+                            "label": "File"
+                        },
+                        "destination": {
+                            "label": "My Drive"
+                        },
+                        "allowFileDiscovery": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-restricted"
+                            },
+                            "label": "My Google Restricted connection (agency.aiaa@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-restricted",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "type": "hidden"
+                    },
+                    {
+                        "name": "destination",
+                        "type": "select",
+                        "label": "Choose a Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "file",
+                                "folder"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "role",
+                        "type": "select",
+                        "label": "Role",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "owner",
+                                "writer",
+                                "commenter",
+                                "reader"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "type": "select",
+                        "label": "Type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "user",
+                                "group",
+                                "domain",
+                                "anyone"
+                            ]
+                        }
+                    },
+                    {
+                        "mode": "edit",
+                        "name": "file",
+                        "type": "file",
+                        "label": "File ID",
+                        "required": true
+                    },
+                    {
+                        "name": "allowFileDiscovery",
+                        "type": "boolean",
+                        "label": "Allow File Discovery",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "fileId",
+                        "type": "text",
+                        "label": "File ID"
+                    },
+                    {
+                        "name": "kind",
+                        "type": "text",
+                        "label": "Kind"
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "Permission ID"
+                    },
+                    {
+                        "name": "type",
+                        "type": "text",
+                        "label": "Type"
+                    },
+                    {
+                        "name": "shareLink",
+                        "type": "url",
+                        "label": "Share Link"
+                    },
+                    {
+                        "name": "emailAddress",
+                        "type": "text",
+                        "label": "Email Address"
+                    },
+                    {
+                        "name": "domain",
+                        "type": "text",
+                        "label": "Domain"
+                    },
+                    {
+                        "name": "role",
+                        "type": "text",
+                        "label": "Role"
+                    },
+                    {
+                        "name": "allowFileDiscovery",
+                        "type": "boolean",
+                        "label": "Allow File Discovery"
+                    },
+                    {
+                        "name": "displayName",
+                        "type": "text",
+                        "label": "Display Name"
+                    },
+                    {
+                        "name": "photoLink",
+                        "type": "text",
+                        "label": "Photo Link"
+                    },
+                    {
+                        "name": "expirationTime",
+                        "type": "date",
+                        "label": "Expiration Time"
+                    },
+                    {
+                        "name": "teamDrivePermissionDetails",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "teamDrivePermissionType",
+                                    "type": "text",
+                                    "label": "Team Drive Permission Type"
+                                },
+                                {
+                                    "name": "role",
+                                    "type": "text",
+                                    "label": "Role"
+                                },
+                                {
+                                    "name": "inheritedFrom",
+                                    "type": "text",
+                                    "label": "Inherited From"
+                                },
+                                {
+                                    "name": "inherited",
+                                    "type": "boolean",
+                                    "label": "Inherited"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Team Drive Permission Details"
+                    },
+                    {
+                        "name": "permissionDetails",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "permissionType",
+                                    "type": "text",
+                                    "label": "Permission Type"
+                                },
+                                {
+                                    "name": "role",
+                                    "type": "text",
+                                    "label": "Role"
+                                },
+                                {
+                                    "name": "inheritedFrom",
+                                    "type": "text",
+                                    "label": "Inherited From"
+                                },
+                                {
+                                    "name": "inherited",
+                                    "type": "boolean",
+                                    "label": "Inherited"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Permission Details"
+                    },
+                    {
+                        "name": "deleted",
+                        "type": "boolean",
+                        "label": "Deleted"
+                    },
+                    {
+                        "name": "pendingOwner",
+                        "type": "boolean",
+                        "label": "Pending Owner"
+                    },
+                    {
+                        "name": "webContentLink",
+                        "type": "url",
+                        "label": "Web Content Link"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 12,
+            "module": "google-email:ActionSendEmail",
+            "version": 2,
+            "parameters": {
+                "account": 727323
+            },
+            "mapper": {
+                "cc": [],
+                "to": [
+                    "{{1.fields.`Your email? (where we send the results)`}}"
+                ],
+                "bcc": [],
+                "from": "",
+                "html": "Salut {{1.fields.`What's Your First Name?`}}, j'espère que tu vas bien. Je viens de terminer l'élaboration de ton plan d'action pour les 120 prochains jour. Prend une feuille ou un google doc pour prendre des notes.\n\nN'hésite pas à l'écouter juste ici et à prendre des notes :{{10.webContentLink}}\n\nAssure-toi d'utiliser les ressources que tu trouveras sur Podia, de la communauté et de rapidement reserver tes premiers appels de coaching avec moi.\n\nTu vas tout casser et je suis toujours là pour t'aider,\n\nSimon",
+                "subject": "Ton plan d'action pour les 120 prochains jour {{1.fields.`What's Your First Name?`}}",
+                "attachments": [
+                    {
+                        "cid": "",
+                        "data": "{{7.data}}",
+                        "fileName": "{{7.fileName}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2100,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "cc": {
+                            "mode": "chose"
+                        },
+                        "to": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "bcc": {
+                            "mode": "chose"
+                        },
+                        "attachments": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "cid": {
+                                        "collapsed": true
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "parameters": {
+                        "account": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-restricted"
+                            },
+                            "label": "My Google Restricted connection (agency.aiaa@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "account",
+                        "type": "account:google-restricted",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "from",
+                        "type": "text",
+                        "label": "From"
+                    },
+                    {
+                        "name": "to",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Email address",
+                            "required": true
+                        },
+                        "type": "array",
+                        "label": "To",
+                        "required": true
+                    },
+                    {
+                        "name": "subject",
+                        "type": "text",
+                        "label": "Subject"
+                    },
+                    {
+                        "name": "html",
+                        "type": "text",
+                        "label": "Content"
+                    },
+                    {
+                        "name": "attachments",
+                        "spec": [
+                            {
+                                "name": "fileName",
+                                "type": "filename",
+                                "label": "File name",
+                                "required": true,
+                                "semantic": "file:name"
+                            },
+                            {
+                                "name": "data",
+                                "type": "buffer",
+                                "label": "Data",
+                                "required": true,
+                                "semantic": "file:data"
+                            },
+                            {
+                                "name": "cid",
+                                "type": "text",
+                                "label": "Content-ID"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Attachments"
+                    },
+                    {
+                        "name": "cc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Email address"
+                        },
+                        "type": "array",
+                        "label": "Copy recipient"
+                    },
+                    {
+                        "name": "bcc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Email address"
+                        },
+                        "type": "array",
+                        "label": "Blind copy recipient"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu2.make.com"
+    }
+}
