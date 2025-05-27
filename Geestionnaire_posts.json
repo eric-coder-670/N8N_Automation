@@ -1,5 +1,5 @@
 {
-    "name": "2) Création de contenu - Full IA",
+    "name": "Générateur de contenu IA",
     "flow": [
         {
             "id": 4,
@@ -33,13 +33,13 @@
                 },
                 "parameters": [
                     {
-                        "name": "__IMTCONN__",
+                        "name": "connexion",
                         "type": "account:notion2,notion3",
                         "label": "Connection",
                         "required": true
                     },
                     {
-                        "name": "select",
+                        "name": "selection",
                         "type": "select",
                         "label": "Watch Database Items",
                         "required": true,
