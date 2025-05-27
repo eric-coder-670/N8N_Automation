@@ -1,0 +1,536 @@
+{
+  "name": "Gestion des mails",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "output": "raw",
+        "filters": {
+          "readStatus": "unread"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlookTrigger",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        0
+      ],
+      "id": "0936abad-9846-48e2-b06d-22ff536d87ee",
+      "name": "Microsoft Outlook Trigger",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "HFlfJIGdfTWffl3M",
+          "name": "Microsoft Outlook account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "id"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=voici le mail :  {{ $json.body.content }}"
+            },
+            {
+              "content": "Prends l’e-mail entrant et nettoies le pour le rendre plus lisible. Débarrasse toi des balises HTML mais ne supprime pas le contenu de l'e-mail",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "f6d212bc-d978-4a8d-b364-c8c2f81dab69",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "HD7DAGjcfahPpBxj",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.message.content }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "URGENT",
+              "description": "Email nécessitant une attention ou une action immédiate , généralement envoyés pars des personnes importantes,des clients , des collaborateurs,des décideurs clés. ces emails contiennent des demandes sensibles au niveau du temps, des échéances ou des problèmes rencontrés.\n\nmots clés: Urgent,délai d'action requise, haute priorité"
+            },
+            {
+              "category": "INFORMATIQUE",
+              "description": "Emails liés à l’assistance technique, aux systèmes d'information, aux outils numériques, ou aux incidents informatiques. Ils peuvent provenir du service IT, de prestataires techniques ou de collègues rencontrant des problèmes techniques ou demandant une intervention.  Contenu typique : demandes de support, signalements de bugs, notifications de maintenance, requêtes d’accès, configurations, ou installations de logiciels.  Mots clés : panne, bug, accès, réseau, IT, support, système, installation, configuration, mot de passe"
+            },
+            {
+              "category": "PUBLICITE",
+              "description": "Emails liés à l’assistance technique, aux systèmes d'information, aux outils numériques, ou aux incidents informatiques. Ils peuvent provenir du service IT, de prestataires techniques ou de collègues rencontrant des problèmes techniques ou demandant une intervention.  Contenu typique : demandes de support, signalements de bugs, notifications de maintenance, requêtes d’accès, configurations, ou installations de logiciels.  Mots clés : panne, bug, accès, réseau, IT, support, système, installation, configuration, mot de passe"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        280,
+        0
+      ],
+      "id": "6d5ca0f1-9677-44ba-a742-f7451e155c56",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        300,
+        240
+      ],
+      "id": "465916a2-f2ec-4b4d-b86a-0de76a715485",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "HD7DAGjcfahPpBxj",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "messageId": {
+          "__rl": true,
+          "value": "={{ $('Microsoft Outlook Trigger').item.json.id }}",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "AQMkADAwATM3ZmYAZS0yOWUxLTllMTktMDACLTAwCgAuAAAD3atmH5JPUUuZRZA-a-1jEgEAMhBssu2KY0eSzuDs0jbiNQAE0RG_AQAAAA==",
+          "mode": "list",
+          "cachedResultName": "URGENT",
+          "cachedResultUrl": "https://outlook.office365.com/mail/AQMkADAwATM3ZmYAZS0yOWUxLTllMTktMDACLTAwCgAuAAAD3atmH5JPUUuZRZA%2Fa%2F1jEgEAMhBssu2KY0eSzuDs0jbiNQAE0RG_AQAAAA%3D%3D"
+        }
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        720,
+        -220
+      ],
+      "id": "10c66050-1ec9-4465-aa9a-48c3377a46e3",
+      "name": "Email Urgent",
+      "webhookId": "a15a13d0-a9ec-43d5-b40e-ccffdc620a96",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "HFlfJIGdfTWffl3M",
+          "name": "Microsoft Outlook account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "messageId": {
+          "__rl": true,
+          "value": "={{ $('Microsoft Outlook Trigger').item.json.id }}",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "AQMkADAwATM3ZmYAZS0yOWUxLTllMTktMDACLTAwCgAuAAAD3atmH5JPUUuZRZA-a-1jEgEAMhBssu2KY0eSzuDs0jbiNQAE0RG_AgAAAA==",
+          "mode": "list",
+          "cachedResultName": "PUBLICITER",
+          "cachedResultUrl": "https://outlook.office365.com/mail/AQMkADAwATM3ZmYAZS0yOWUxLTllMTktMDACLTAwCgAuAAAD3atmH5JPUUuZRZA%2Fa%2F1jEgEAMhBssu2KY0eSzuDs0jbiNQAE0RG_AgAAAA%3D%3D"
+        }
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        740,
+        200
+      ],
+      "id": "e3fcbe77-0c39-4595-9f80-76d945fceb6e",
+      "name": "Email Publicités",
+      "webhookId": "a15a13d0-a9ec-43d5-b40e-ccffdc620a96",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "HFlfJIGdfTWffl3M",
+          "name": "Microsoft Outlook account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "id"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Vous êtes assistant(e) de direction. Votre travail consiste à répondre rapidement et efficacement aux emails urgents, souvent envoyés par des personnes importantes, des clients ou des décideurs clés.\nCes emails contiennent des demandes sensibles au temps, avec des échéances précises ou des problèmes critiques à résoudre immédiatement.\n\nVotre réponse doit :\n\n    Être claire, concise et professionnelle\n\n    Montrer que le message a bien été compris\n\n    Proposer immédiatement une solution, un plan d'action ou un accusé de réception avec un délai de traitement\n\n    Employer un ton respectueux et réactif\n\nVous devez aussi repérer les éléments clés comme les dates d’échéance, les demandes prioritaires, et adapter le niveau d’urgence à la position de l’expéditeur.\n\nCommencez toujours par remercier l’expéditeur et confirmer la prise en compte immédiate de la demande.\n\nvoici le mail aux quel vous repondrez :  {{ $('OpenAI').item.json.message.content }}\n\nveuillez saisir les parametre suivants :\nObjet\nMessage"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        960,
+        -220
+      ],
+      "id": "bed63fd9-3d9f-45d2-ae4c-dfbdb0aef8f2",
+      "name": "Créer un broullion",
+      "credentials": {
+        "openAiApi": {
+          "id": "HD7DAGjcfahPpBxj",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ $json.message.content.Objet }}",
+        "bodyContent": "={{ $json.message.content.Message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1720,
+        0
+      ],
+      "id": "6d56f7b7-8316-4b0e-a6bb-4b5de92d217e",
+      "name": "Microsoft Outlook",
+      "webhookId": "53c52e08-69c1-4f41-ab86-4f0dedb0a44a",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "HFlfJIGdfTWffl3M",
+          "name": "Microsoft Outlook account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "1877523037",
+        "text": "=email ttrès iportant  de :   {{ $('Microsoft Outlook Trigger').item.json.from.emailAddress.name }}\n\nnous avons créé un brouillon avc l objet : {{ $json.subject }}\n\nvoici le message :{{ $json.bodyPreview }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1940,
+        0
+      ],
+      "id": "bcfdf325-b77b-4cf9-a8c1-6233188348a9",
+      "name": "Telegram",
+      "webhookId": "e4fd9e1b-0892-41ec-b338-628246e84149",
+      "credentials": {
+        "telegramApi": {
+          "id": "6VtQIuNgShhhthHP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "id"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Vous êtes assistant(e) de direction. Votre travail consiste à répondre efficacement aux emails liés aux problématiques informatiques. Ces messages proviennent souvent du service IT, de collègues rencontrant un souci technique, ou de prestataires techniques.\n\nIls concernent des pannes, bugs, demandes d’accès, problèmes de réseau, ou besoins de support technique.\n\nVotre réponse doit :\n\n    Accuser réception du problème\n\n    Poser, si besoin, les bonnes questions techniques pour mieux comprendre\n\n    Rediriger vers le service compétent ou initier une action\n\n    Rester claire, professionnelle et rassurante\n\nMentionnez systématiquement que le problème est pris en compte, même si vous ne le résolvez pas directement. Si possible, proposez un délai estimé ou une action immédiate.\n\nvoici le mail aux quel vous repondrez :  {{ $('OpenAI').item.json.message.content }}\n\nveuillez saisir les parametre suivants :\nObjet\nMessage"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        980,
+        -20
+      ],
+      "id": "2520efba-5b8d-4856-92c3-2893b78cde85",
+      "name": "Créer un broullion1",
+      "credentials": {
+        "openAiApi": {
+          "id": "HD7DAGjcfahPpBxj",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "id"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Vous êtes assistant(e) de direction. Vous recevez des emails liés à la communication, au marketing ou aux actions publicitaires.\n\nCes messages peuvent venir d'agences, d'équipes internes ou de partenaires et portent sur des campagnes en cours, validations de contenus, publications, ou visuels promotionnels.\n\nVotre réponse doit :\n\n    Montrer que vous avez bien compris le contenu promotionnel ou le besoin marketing\n\n    Accuser réception et confirmer le suivi ou la transmission\n\n    Valider ou demander des précisions, selon le cas\n\n    Être professionnelle, rapide et alignée avec l'image de l’entreprise\n\nSi nécessaire, transmettez la demande au service communication ou au responsable concerné, tout en assurant un suivi clair.\nvoici le mail aux quel vous repondrez :  {{ $('OpenAI').item.json.message.content }}\n\nveuillez saisir les parametre suivants :\nObjet\nMessage"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        960,
+        200
+      ],
+      "id": "8386897e-9d0c-4373-b2f2-28806c55b90f",
+      "name": "Créer un broullion2",
+      "credentials": {
+        "openAiApi": {
+          "id": "HD7DAGjcfahPpBxj",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        1480,
+        0
+      ],
+      "id": "dc398731-a35e-42f3-b889-8b87d0bf407c",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "messageId": {
+          "__rl": true,
+          "value": "={{ $('Microsoft Outlook Trigger').item.json.id }}",
+          "mode": "id"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "AQMkADAwATM3ZmYAZS0yOWUxLTllMTktMDACLTAwCgAuAAAD3atmH5JPUUuZRZA-a-1jEgEAMhBssu2KY0eSzuDs0jbiNQAE0RG_AwAAAA==",
+          "mode": "list",
+          "cachedResultName": "INFORMATIQUE",
+          "cachedResultUrl": "https://outlook.office365.com/mail/AQMkADAwATM3ZmYAZS0yOWUxLTllMTktMDACLTAwCgAuAAAD3atmH5JPUUuZRZA%2Fa%2F1jEgEAMhBssu2KY0eSzuDs0jbiNQAE0RG_AwAAAA%3D%3D"
+        }
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        720,
+        -20
+      ],
+      "id": "0ed494af-c2e7-4896-b7d2-f834761336f7",
+      "name": "INFORMATIQUE",
+      "webhookId": "a15a13d0-a9ec-43d5-b40e-ccffdc620a96",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "HFlfJIGdfTWffl3M",
+          "name": "Microsoft Outlook account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Microsoft Outlook Trigger": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Email Urgent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "INFORMATIQUE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Email Publicités",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Urgent": {
+      "main": [
+        [
+          {
+            "node": "Créer un broullion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Créer un broullion": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Microsoft Outlook": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Créer un broullion1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Créer un broullion2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Email Publicités": {
+      "main": [
+        [
+          {
+            "node": "Créer un broullion2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "INFORMATIQUE": {
+      "main": [
+        [
+          {
+            "node": "Créer un broullion1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4a369fa5-ce51-4d8e-814c-72538a999506",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d210c18046779290a48b2c44564e5c2f170a8668453f53289b03d846a9930e28"
+  },
+  "id": "jeCVn8U8iVtFLRTr",
+  "tags": []
+}
