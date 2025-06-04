@@ -1,0 +1,974 @@
+{
+  "name": "Agent RH",
+  "nodes": [
+    {
+      "parameters": {
+        "inputText": "={{ $json.text }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Postule",
+              "description": "Le candidat postule à un poste dans l'organisation"
+            },
+            {
+              "category": "Ne postule pas",
+              "description": "Ce candidat ne postule pas à un emploi"
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "Classe le texte fourni par l'utilisateur dans l'une des catégories suivantes : {categories}, et utilise les instructions de formatage indiquées ci-dessous. Ne donne pas d'explications, et affiche uniquement le json."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        -1220,
+        300
+      ],
+      "id": "c4f0a206-fd15-45f5-bbd2-127b08cae31e",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        -1240,
+        520
+      ],
+      "id": "7d1c7efd-e4fa-41de-9ebb-72be42d1d09f",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "VV21js1OBAC3C4rh",
+          "name": "OpenAi n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {},
+        "options": {
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1580,
+        300
+      ],
+      "id": "8a8874f9-1b57-48a9-a280-f7ea0b76a8d2",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ry5c8wPW82GIKLMp",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appFutn2tbYp3GdXc",
+          "mode": "list",
+          "cachedResultName": "Analystes RH",
+          "cachedResultUrl": "https://airtable.com/appFutn2tbYp3GdXc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblf3wc5TxfRc3nTt",
+          "mode": "list",
+          "cachedResultName": "Candidats",
+          "cachedResultUrl": "https://airtable.com/appFutn2tbYp3GdXc/tblf3wc5TxfRc3nTt"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Upload CV Airtable').item.json.id }}",
+            "Prénom": "={{ $json.output.candidat.prenom }}",
+            "Nom": "={{ $json.output.candidat.nom }}",
+            "Email": "={{ $json.output.candidat.email }}",
+            "Score": "=Global : {{ $json.output.fit_score.global }}\n\nDetail : \nExpérience : {{ $json.output.fit_score.detail.experience }}\nCompétences Techniques : {{ $json.output.fit_score.detail.competences_techniques }}\nRéalisations : {{ $json.output.fit_score.detail.realisations }}\nFormation : {{ $json.output.fit_score.detail.formation }}",
+            "Statut": "Revue en Cours",
+            "Contenu Email": "={{ $('Text Classifier').item.json.text }}",
+            "Résumé": "=Année d'expérience : {{ $json.output.resume.annees_experience }}\nRôle actuel : {{ $json.output.resume.role_actuel }}\nRéalisations clés : \n{{ $json.output.resume.realisations_cles[0] }}\n{{ $json.output.resume.realisations_cles[1] }}\n{{ $json.output.resume.realisations_cles[2] }}\nCompétences techniques : \n{{ $json.output.resume.competences_techniques[0] }}\n{{ $json.output.resume.competences_techniques[1] }}\n{{ $json.output.resume.competences_techniques[2] }}\n{{ $json.output.resume.competences_techniques[3] }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Prénom",
+              "displayName": "Prénom",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nom",
+              "displayName": "Nom",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Contenu Email",
+              "displayName": "Contenu Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Résumé",
+              "displayName": "Résumé",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "CV",
+              "displayName": "CV",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Revue en Cours",
+                  "value": "Revue en Cours"
+                },
+                {
+                  "name": "NOK",
+                  "value": "NOK"
+                },
+                {
+                  "name": "OK",
+                  "value": "OK"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Description Poste",
+              "displayName": "Description Poste",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Titre Poste (from Description Poste)",
+              "displayName": "Titre Poste (from Description Poste)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Description Poste (from Description Poste)",
+              "displayName": "Description Poste (from Description Poste)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1900,
+        120
+      ],
+      "id": "687e956e-5ec7-423a-970d-9e51d798f221",
+      "name": "Airtable",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "60J9sJnINnSmVmxN",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        200,
+        0
+      ],
+      "id": "79f21013-840e-407a-a1e7-a081812c4154",
+      "name": "Share link",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "7aW56PV6JaBGMHlE",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "918ace56-02a1-4bb7-8238-ee1b49241eca",
+              "name": "PDF",
+              "value": "={{ [{ \"url\" : $('Upload CV Gdrive').item.json.webContentLink}] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        360,
+        0
+      ],
+      "id": "33a71570-bea9-4b9e-9de9-7acdc56835c3",
+      "name": "Set Array for Airtable"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyse les informations actuelles de la candidature reçue et attribue une note entre 0 et 10 à ce candidat, 0 signifiant qu'il ne convient pas pour le poste, 10 signifiant qu'il est exceptionnel pour le poste.\nIl y aura un score global et plusieurs scores de détails, à renseigner selon la structure json demandée pour l'output.\nLe poste actuellement ouvert est : {{ $json['Description Poste'] }}\nVoir les informations extraites du PDF : {{ $('Extract from File1').item.json.text }}\nFournis également quelques informations clés expliquant pourquoi ce candidat convient bien au poste",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "Tu es un assistant RH utile. \nTon objectif est d'analyser le CV du candidat et de déterminer si le candidat est un bon candidat pour le poste.",
+          "maxIterations": 1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1440,
+        120
+      ],
+      "id": "c91ae4b5-9f4c-433f-befa-742058a23951",
+      "name": "AI Agent",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        400
+      ],
+      "id": "928bc05e-3c66-41f7-931d-5e5d826ff957",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "VV21js1OBAC3C4rh",
+          "name": "OpenAi n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n \"candidat\": {\n   \"prenom\": \"string\",\n   \"nom\":\"string\",\n   \"email\": \"string\",\n   \"adresse\": \"string\",\n   \"telephone\": \"string\"\n },\n \"resume\": {\n   \"annees_experience\": \"number\",\n   \"role_actuel\": \"string\", \n   \"realisations_cles\": [\"string\"],\n   \"competences_techniques\": [\"string\"]\n },\n \"fit_score\": {\n   \"global\": \"number\",\n   \"detail\": {\n     \"experience\": \"number\",\n     \"competences_techniques\": \"number\", \n     \"realisations\": \"number\",\n     \"formation\": \"number\"\n   },\n   \"raisonnement\": [\"string\"]\n }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1600,
+        400
+      ],
+      "id": "bb815d0a-6c55-4379-a9aa-2872cbb1e91d",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "attachment_0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        160,
+        260
+      ],
+      "id": "86d8e426-72de-4c6d-92ea-df97dbb4249b",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "attachment_0",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f080824e-4237-4959-af6a-74b9d9a3c8ea",
+                    "leftValue": "attachment_0",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "allMatchingOutputs": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -360,
+        180
+      ],
+      "id": "95d70e1a-aa10-45fa-8e5b-319a0fe9c554",
+      "name": "Switch",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        940,
+        120
+      ],
+      "id": "88a04d88-f68e-4633-9380-9d8fa72dd822",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "content": "## Tri Automatique des Email Entrants",
+        "height": 800,
+        "width": 1240,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1640,
+        -120
+      ],
+      "id": "451bfc49-5ba2-4ae6-bf5c-90095692ddf4",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Gestion documentaire / Transformation de l'Input en Données Structurées",
+        "height": 800,
+        "width": 1300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        -120
+      ],
+      "id": "8dd9a7d8-1d09-4ba3-b489-439b82ab37f9",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Intelligence et Scoring",
+        "height": 800,
+        "width": 1260,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        940,
+        -120
+      ],
+      "id": "9b2fd910-0fcd-45d3-970b-739ec55973e3",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "=attachment_0",
+        "name": "=",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1atyjYjW5Fy5vWd2q_SZMbJDgalUoFcYj",
+          "mode": "list",
+          "cachedResultName": "CV",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1atyjYjW5Fy5vWd2q_SZMbJDgalUoFcYj"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "9a25f894-b4a4-437b-b333-a77a7edd67b0",
+      "name": "Upload CV Gdrive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "7aW56PV6JaBGMHlE",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appFutn2tbYp3GdXc",
+          "mode": "list",
+          "cachedResultName": "Analystes RH",
+          "cachedResultUrl": "https://airtable.com/appFutn2tbYp3GdXc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblf3wc5TxfRc3nTt",
+          "mode": "list",
+          "cachedResultName": "Candidats",
+          "cachedResultUrl": "https://airtable.com/appFutn2tbYp3GdXc/tblf3wc5TxfRc3nTt"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "CV": "={{ $json.PDF }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Prénom",
+              "displayName": "Prénom",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nom",
+              "displayName": "Nom",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Contenu Email",
+              "displayName": "Contenu Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Résumé",
+              "displayName": "Résumé",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "CV",
+              "displayName": "CV",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Revue en Cours",
+                  "value": "Revue en Cours"
+                },
+                {
+                  "name": "NOK",
+                  "value": "NOK"
+                },
+                {
+                  "name": "OK",
+                  "value": "OK"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Description Poste",
+              "displayName": "Description Poste",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Titre Poste (from Description Poste)",
+              "displayName": "Titre Poste (from Description Poste)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Description Poste (from Description Poste)",
+              "displayName": "Description Poste (from Description Poste)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        580,
+        0
+      ],
+      "id": "3e4f10d2-15f6-4028-9a48-d271928e23e1",
+      "name": "Upload CV Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "60J9sJnINnSmVmxN",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appFutn2tbYp3GdXc",
+          "mode": "list",
+          "cachedResultName": "Analystes RH",
+          "cachedResultUrl": "https://airtable.com/appFutn2tbYp3GdXc"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblRjhiMV0v5XOtG7",
+          "mode": "list",
+          "cachedResultName": "Description Poste",
+          "cachedResultUrl": "https://airtable.com/appFutn2tbYp3GdXc/tblRjhiMV0v5XOtG7"
+        },
+        "filterByFormula": "{Statut} = 'Poste Ouvert'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1160,
+        120
+      ],
+      "id": "b2136253-1227-4627-b981-f4e433e5f331",
+      "name": "Airtable1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "60J9sJnINnSmVmxN",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        440
+      ],
+      "id": "eeff01c4-35d5-4a85-96ca-d14cc64fe315",
+      "name": "Ne rien faire"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ne rien faire",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share link": {
+      "main": [
+        [
+          {
+            "node": "Set Array for Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Array for Airtable": {
+      "main": [
+        [
+          {
+            "node": "Upload CV Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Upload CV Gdrive",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Airtable1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload CV Gdrive": {
+      "main": [
+        [
+          {
+            "node": "Share link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload CV Airtable": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ee3ba535-a882-4672-a383-07e25b374f1b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9d50f7672263fce0eb2fef289bbf3d79a6a924f9774145fa1821aa00ed57bf55"
+  },
+  "id": "VgnzxUTBTOohSX23",
+  "tags": []
+}
